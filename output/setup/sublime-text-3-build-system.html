@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="Stylesheet" type="text/css" href="/static/css/tango.css">
+        <title>Sublime Text Build System - Vanechu · Notes</title>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body>
+        <div id="container">
+            
+<div id="header">
+  <div id="post-nav"><a href="/">Home</a>&nbsp;»&nbsp;<a href="/#Setup">Setup</a>&nbsp;»&nbsp;Sublime Text Build System</div>
+</div>
+<div class="clearfix"></div>
+<div id="title">Sublime Text Build System</div>
+  <div id="content">
+  <h1 id="reference">Reference</h1>
+<p><a href="http://docs.sublimetext.info/en/latest/file_processing/build_systems.html">Sublime Text Unofficial Documentation</a></p>
+<h2 id="python">Python</h2>
+<p>Save the following code as <code>python.sublime-build</code> in <code>/Users/lax/Library/Application Support/Sublime Text 3/Packages/User</code> under Mac OS X</p>
+<div class="hlcode"><pre><span class="p">{</span>
+    <span class="s">&quot;cmd&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s">&quot;/Users/lax/VEnv/bin/python&quot;</span><span class="p">,</span> <span class="s">&quot;-u&quot;</span><span class="p">,</span> <span class="s">&quot;$file&quot;</span><span class="p">],</span>
+    <span class="s">&quot;file_regex&quot;</span><span class="o">:</span> <span class="s">&quot;^[ ]*File </span><span class="se">\&quot;</span><span class="s">(...*?)</span><span class="se">\&quot;</span><span class="s">, line ([0-9]*)&quot;</span><span class="p">,</span>
+    <span class="s">&quot;selector&quot;</span><span class="o">:</span> <span class="s">&quot;source.python&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+        </div>
+        <div id="footer">
+            <span>
+                Copyright © 2012-2014 vanechu.
+                Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.
+            </span>
+        </div>
+        
+    </body>
+</html>
