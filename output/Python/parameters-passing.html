@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="Stylesheet" type="text/css" href="/static/css/tango.css">
+        <title>Parameter passing - Vanechu · Notes</title>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body>
+        <div id="container">
+            
+<div id="header">
+  <div id="post-nav"><a href="/">Home</a>&nbsp;»&nbsp;<a href="/#Python">Python</a>&nbsp;»&nbsp;Parameter passing</div>
+</div>
+<div class="clearfix"></div>
+<div id="title">Parameter passing</div>
+  <div id="content">
+  <h1 id="reference">Reference</h1>
+<p><a href="http://freshstu.com/2013/04/four-kinds-of-function-argment-pass-in-python/">python函数的四种参数传递方式</a></p>
+<p>There are four types to pass parameters.</p>
+<h2 id="fun1abc">'fun1(a,b,c)'</h2>
+<p>'''</p>
+<p>'''</p>
+<h2 id="fun2a1b2c3">'fun2(a=1,b=2,c=3)'</h2>
+<p>'''</p>
+<p>'''</p>
+<h2 id="fun3args">'fun3(*args)'</h2>
+<p>'''</p>
+<p>'''</p>
+<h2 id="fun4kargs">'fun4(**kargs)'</h2>
+<p>'''
+'''</p>
+<p>'''
+def test(x,y=5,<em>,</em>*b):
+   print x,y,a,b</p>
+<p>test(1) ===&gt; 1 5 () {}
+test(1,2) ===&gt; 1 2 () {}
+test(1,2,3) ===&gt; 1 2 (3,) {}
+test(1,2,3,4) ===&gt; 1 2 (3,4)
+test(x=1) ===&gt; 1 5 () {}
+test(x=1,y=1) ===&gt; 1 1 () {}
+test(x=1,y=1,a=1) ===&gt; 1 1 () {'a':1} test(x=1,y=1,a=1,b=1) ===&gt; 1 1 () {'a':1,'b':1}
+test(1,y=1) ===&gt; 1 1 () {}
+test(1,2,y=1) ===&gt; 出错，说y给赋了多个值
+test(1,2,3,4,a=1) ===&gt; 1 2 (3,4) {'a':1}
+test(1,2,3,4,k=1,t=2,o=3) ===&gt; 1 2 (3,4) {'k':1,'t':2,'o':3}</p>
+<p>'''</p>
+</div>
+
+        </div>
+        <div id="footer">
+            <span>
+                Copyright © 2012-2014 vanechu.
+                Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.
+            </span>
+        </div>
+        
+    </body>
+</html>
