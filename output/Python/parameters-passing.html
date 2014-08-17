@@ -21,33 +21,25 @@
   <h1 id="reference">Reference</h1>
 <p><a href="http://freshstu.com/2013/04/four-kinds-of-function-argment-pass-in-python/">python函数的四种参数传递方式</a></p>
 <p>There are four types to pass parameters.</p>
-<h2 id="fun1abc">'fun1(a,b,c)'</h2>
-<p>'''</p>
-<p>'''</p>
-<h2 id="fun2a1b2c3">'fun2(a=1,b=2,c=3)'</h2>
-<p>'''</p>
-<p>'''</p>
-<h2 id="fun3args">'fun3(*args)'</h2>
-<p>'''</p>
-<p>'''</p>
-<h2 id="fun4kargs">'fun4(**kargs)'</h2>
-<p>'''
-'''</p>
-<p>'''
-def test(x,y=5,<em>,</em>*b):
-   print x,y,a,b</p>
-<p>test(1) ===&gt; 1 5 () {}
-test(1,2) ===&gt; 1 2 () {}
-test(1,2,3) ===&gt; 1 2 (3,) {}
-test(1,2,3,4) ===&gt; 1 2 (3,4)
-test(x=1) ===&gt; 1 5 () {}
-test(x=1,y=1) ===&gt; 1 1 () {}
-test(x=1,y=1,a=1) ===&gt; 1 1 () {'a':1} test(x=1,y=1,a=1,b=1) ===&gt; 1 1 () {'a':1,'b':1}
-test(1,y=1) ===&gt; 1 1 () {}
-test(1,2,y=1) ===&gt; 出错，说y给赋了多个值
-test(1,2,3,4,a=1) ===&gt; 1 2 (3,4) {'a':1}
-test(1,2,3,4,k=1,t=2,o=3) ===&gt; 1 2 (3,4) {'k':1,'t':2,'o':3}</p>
-<p>'''</p>
+<h2 id="fun1abc"><code>fun1(a,b,c)</code></h2>
+<h2 id="fun2a1b2c3"><code>fun2(a=1,b=2,c=3)</code></h2>
+<h2 id="fun3args"><code>fun3(*args)</code></h2>
+<h2 id="fun4kargs"><code>fun4(**kargs)</code></h2>
+<div class="hlcode"><pre><span class="n">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="o">**</span><span class="n">b</span><span class="p">)</span><span class="o">:</span>
+   <span class="n">print</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span>
+
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">5</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">2</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)</span> <span class="p">{}</span>
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">5</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="p">()</span> <span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span> <span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="p">()</span> <span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="sc">&#39;b&#39;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">1</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="n">error</span><span class="p">,</span> <span class="n">assign</span> <span class="n">multiple</span> <span class="n">values</span> <span class="n">to</span> <span class="sc">&#39;y&#39;</span>
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="o">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">t</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">o</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">===&gt;</span> <span class="mi">1</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span><span class="sc">&#39;k&#39;</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="sc">&#39;t&#39;</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="sc">&#39;o&#39;</span><span class="o">:</span><span class="mi">3</span><span class="p">}</span>
+</pre></div>
 </div>
 
         </div>
