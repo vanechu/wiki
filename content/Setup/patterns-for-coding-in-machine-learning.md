@@ -16,7 +16,7 @@ project_name/code/
 project_name/data/
 ```
 
-## Separate input data, working data and output data. ##
+## Separate input data, working data and output data ##
 
 It can be useful to think of data as belonging to three distinct categories:
 
@@ -31,3 +31,51 @@ It can be useful to think of data as belonging to three distinct categories:
 /other/path/to/data/working/
 /other/path/to/data/output/
 ```
+
+## Save everything to disk frequently ##
+
+- Save the model parameters to disk at suitable intervals.
+- If a figure is useful for run-time diagnosis, then it should probably be saved to disk too.
+- When you run your algorithm on different datasets, store the output in separate folders.
+- Store the output of each day's work in a separate folder.
+
+```
+working/18_07_2012/dataset_1/
+working/18_07_2012/dataset_2/
+working/19_07_2012/dataset_1/
+working/19_07_2012/dataset_2/
+```
+
+Inside the 18_07_2012/dataset_1 folder you might find:
+
+```
+dataset_1/likelihood_curve_iteration_100.eps
+dataset_1/likelihood_curve_iteration_200.eps
+dataset_1/likelihood_curve_iteration_300.eps
+dataset_1/model_parameters_iteration_100.dat
+dataset_1/model_parameters_iteration_200.dat
+dataset_1/model_parameters_iteration_300.dat
+```
+
+## Separate options from parameters ##
+
+
+- Options specify how your algorithm should run.
+- Parameters specify the model, and are usually an output of your algorithm.
+
+```
+% set the options
+options.run_name = '18_07_2012/dataset_1/';
+options.dataset_path = '/other/path/to/data/input/dataset_1.dat';
+options.working_path = ['/other/path/to/data/working/' options.run_name];
+options.output_path = ['/other/path/to/data/output/' options.run_name];
+options.learning_rate = 0.1;
+options.num_iterations = 300;
+
+% load the data
+data = deserialise(options.dataset_path);
+
+% learn the parameters
+parameters = train_model(options, data);
+```
+

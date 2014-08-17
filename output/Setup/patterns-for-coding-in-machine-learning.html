@@ -27,7 +27,7 @@
 </pre></div>
 
 
-<h2 id="separate-input-data-working-data-and-output-data">Separate input data, working data and output data.</h2>
+<h2 id="separate-input-data-working-data-and-output-data">Separate input data, working data and output data</h2>
 <p>It can be useful to think of data as belonging to three distinct categories:</p>
 <ul>
 <li>Input files come with the problem. They never change.</li>
@@ -38,6 +38,51 @@
 <span class="o">/</span><span class="n">other</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">input</span><span class="o">/</span>
 <span class="o">/</span><span class="n">other</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">working</span><span class="o">/</span>
 <span class="o">/</span><span class="n">other</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">output</span><span class="o">/</span>
+</pre></div>
+
+
+<h2 id="save-everything-to-disk-frequently">Save everything to disk frequently</h2>
+<ul>
+<li>Save the model parameters to disk at suitable intervals.</li>
+<li>If a figure is useful for run-time diagnosis, then it should probably be saved to disk too.</li>
+<li>When you run your algorithm on different datasets, store the output in separate folders.</li>
+<li>Store the output of each day's work in a separate folder.</li>
+</ul>
+<div class="hlcode"><pre><span class="n">working</span><span class="o">/</span><span class="mi">18</span><span class="n">_07_2012</span><span class="o">/</span><span class="n">dataset_1</span><span class="o">/</span>
+<span class="n">working</span><span class="o">/</span><span class="mi">18</span><span class="n">_07_2012</span><span class="o">/</span><span class="n">dataset_2</span><span class="o">/</span>
+<span class="n">working</span><span class="o">/</span><span class="mi">19</span><span class="n">_07_2012</span><span class="o">/</span><span class="n">dataset_1</span><span class="o">/</span>
+<span class="n">working</span><span class="o">/</span><span class="mi">19</span><span class="n">_07_2012</span><span class="o">/</span><span class="n">dataset_2</span><span class="o">/</span>
+</pre></div>
+
+
+<p>Inside the 18_07_2012/dataset_1 folder you might find:</p>
+<div class="hlcode"><pre><span class="n">dataset_1</span><span class="o">/</span><span class="n">likelihood_curve_iteration_100</span><span class="p">.</span><span class="n">eps</span>
+<span class="n">dataset_1</span><span class="o">/</span><span class="n">likelihood_curve_iteration_200</span><span class="p">.</span><span class="n">eps</span>
+<span class="n">dataset_1</span><span class="o">/</span><span class="n">likelihood_curve_iteration_300</span><span class="p">.</span><span class="n">eps</span>
+<span class="n">dataset_1</span><span class="o">/</span><span class="n">model_parameters_iteration_100</span><span class="p">.</span><span class="n">dat</span>
+<span class="n">dataset_1</span><span class="o">/</span><span class="n">model_parameters_iteration_200</span><span class="p">.</span><span class="n">dat</span>
+<span class="n">dataset_1</span><span class="o">/</span><span class="n">model_parameters_iteration_300</span><span class="p">.</span><span class="n">dat</span>
+</pre></div>
+
+
+<h2 id="separate-options-from-parameters">Separate options from parameters</h2>
+<ul>
+<li>Options specify how your algorithm should run.</li>
+<li>Parameters specify the model, and are usually an output of your algorithm.</li>
+</ul>
+<div class="hlcode"><pre><span class="c">% set the options</span>
+<span class="n">options</span><span class="p">.</span><span class="n">run_name</span> <span class="p">=</span> <span class="s">&#39;18_07_2012/dataset_1/&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">dataset_path</span> <span class="p">=</span> <span class="s">&#39;/other/path/to/data/input/dataset_1.dat&#39;</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">working_path</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;/other/path/to/data/working/&#39;</span> <span class="n">options</span><span class="p">.</span><span class="n">run_name</span><span class="p">];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">output_path</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;/other/path/to/data/output/&#39;</span> <span class="n">options</span><span class="p">.</span><span class="n">run_name</span><span class="p">];</span>
+<span class="n">options</span><span class="p">.</span><span class="n">learning_rate</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">options</span><span class="p">.</span><span class="n">num_iterations</span> <span class="p">=</span> <span class="mi">300</span><span class="p">;</span>
+
+<span class="c">% load the data</span>
+<span class="n">data</span> <span class="p">=</span> <span class="n">deserialise</span><span class="p">(</span><span class="n">options</span><span class="p">.</span><span class="n">dataset_path</span><span class="p">);</span>
+
+<span class="c">% learn the parameters</span>
+<span class="n">parameters</span> <span class="p">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span>
 </pre></div>
 </div>
 
