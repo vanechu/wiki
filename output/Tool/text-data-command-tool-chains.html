@@ -20,9 +20,14 @@
   <div id="content">
   <h1 id="reference">Reference</h1>
 <p><a href="http://www.sourabhbajaj.com/mac-setup">Mac OS X Setup Guide</a></p>
-<h2 id="displays-the-firstlast-few-lines-head-and-tail">Displays the first/last few lines 'head' and 'tail'</h2>
-<div class="hlcode"><pre><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span> <span class="n">demo</span><span class="p">.</span><span class="n">txtTool</span>
+<h2 id="display-the-firstlast-few-lines-head-and-tail">Display the first/last few lines 'head' and 'tail'</h2>
+<div class="hlcode"><pre><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span> <span class="n">demo</span><span class="p">.</span><span class="n">txt</span>
 <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span> <span class="n">demo</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+
+
+<h2 id="display-the-custom-line">Display the custom line</h2>
+<div class="hlcode"><pre><span class="n">sed</span> <span class="o">-</span><span class="n">n</span> <span class="err">&#39;</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="n">p</span><span class="err">&#39;</span> <span class="n">demo</span><span class="p">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 
