@@ -8,6 +8,19 @@ date: 2014-08-08 00:00
 
 [Mac OS X Setup Guide](http://www.sourabhbajaj.com/mac-setup)
 
+## Python ##
+I highly recommend to use Anaconda.
+
+Test openblas and such kind of things.
+
+```
+python -c "import numpy as np; np.show_config()"
+```
+Install openblas then compiling numpy 
+
+http://dedupe.readthedocs.org/en/latest/OSX-Install-Notes.html
+
+
 ## C++ ##
 Make sure you have installed Xcode command line tools. Check the c++ version to make sure it is Clang 4.0+
 
