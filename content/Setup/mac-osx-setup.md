@@ -8,6 +8,22 @@ date: 2014-08-08 00:00
 
 [Mac OS X Setup Guide](http://www.sourabhbajaj.com/mac-setup)
 
+### Alias
+
+OS X has a neat command-line tool called pbcopy which takes the standard input and places it in the clipboard to paste into other applications.
+
+In Ubuntu(or any Linux distro with Xwindows), a similar tool is xclip.
+
+```
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+```
+Now you can pipe any text to pbcopy
+
+```
+cat ~/.ssh/id_dsa.pub | pbcopy
+```
+
 ## Python ##
 I highly recommend to use Anaconda.
 
