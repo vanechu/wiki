@@ -7,8 +7,11 @@ date: 2014-10-16 00:00
 # Reference #
 
 [How to link ATLAS/MKL to existing Numpy without rebuilding?](http://stackoverflow.com/questions/21671040/link-atlas-mkl-to-an-installed-numpy)
+
 [How to check blas/lapack linkage in numpy/scipy?](http://stackoverflow.com/questions/9000164/how-to-check-blas-lapack-linkage-in-numpy-scipy)
+
 [Compiling numpy with OpenBLAS integration](http://stackoverflow.com/questions/11443302/compiling-numpy-with-openblas-integration)
+
 [Conclusion for installing OpenBlas, Numpy and Theao](https://groups.google.com/forum/#!topic/theano-users/hfe-sgoRGxs)
 
 ## Anaconda ##
