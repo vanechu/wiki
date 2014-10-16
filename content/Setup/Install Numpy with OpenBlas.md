@@ -1,5 +1,5 @@
 ---
-title: "Install Numpy with OpenBlas"
+title: "Install Numpy with OpenBLAS"
 layout: page
 date: 2014-10-16 00:00
 ---
@@ -9,6 +9,7 @@ date: 2014-10-16 00:00
 [How to link ATLAS/MKL to existing Numpy without rebuilding?](http://stackoverflow.com/questions/21671040/link-atlas-mkl-to-an-installed-numpy)
 [How to check blas/lapack linkage in numpy/scipy?](http://stackoverflow.com/questions/9000164/how-to-check-blas-lapack-linkage-in-numpy-scipy)
 [Compiling numpy with OpenBLAS integration](http://stackoverflow.com/questions/11443302/compiling-numpy-with-openblas-integration)
+[Conclusion for installing OpenBlas, Numpy and Theao](https://groups.google.com/forum/#!topic/theano-users/hfe-sgoRGxs)
 
 ## Anaconda ##
 `Anaconda` is a Python distribution with scitific libraies installed, and atlas is already packaged without configuration althrough it is not fast as OpenBLAS.
