@@ -21,3 +21,9 @@ tail -n 5 demo.txt
 sed -n '9,10p' demo.txt
 ```
 
+
+## Create mutiple dictionaries from 001 to 100 ##
+
+```
+mkdir {001..100}
+```
