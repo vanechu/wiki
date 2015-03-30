@@ -27,3 +27,10 @@ sed -n '9,10p' demo.txt
 ```
 mkdir {001..100}
 ```
+
+## Resize Image 
+
+```
+ls *.jpg|sed -e 's/\..*//'|xargs -I X convert X.jpg 50% X-resized.jpg
+
+```
