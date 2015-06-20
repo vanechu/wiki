@@ -10,15 +10,29 @@
     </head>
 
     <body>
+        <a href="https://github.com/tankywoo/wiki.tankywoo.com"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+        <!--
+        <div id="nav">
+            <ul>
+                <li><a href="http://tankywoo.com"></a></li>
+                <li><a href="">Github</a></li>
+                <li><a href="">Simiki</a></li>
+            </ul>
+        </div>
+        -->
         <div id="container">
             
-<div id="header">
-  <div id="post-nav"><a href="/">Home</a>&nbsp;»&nbsp;<a href="/#Tool">Tool</a>&nbsp;»&nbsp;Text Data Command Tool Chains</div>
-</div>
-<div class="clearfix"></div>
-<div id="title">Text Data Command Tool Chains</div>
-  <div id="content">
-  <h1 id="reference">Reference</h1>
+    <div id="header">
+        <div id="post-nav">
+            
+            <a href="/">Home</a> » <a href="/#Tool">Tool</a> » Text Data Command Tool Chains
+            
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="title">Text Data Command Tool Chains</div>
+    <div id="content">
+        <h1 id="reference">Reference</h1>
 <p><a href="http://www.sourabhbajaj.com/mac-setup">Mac OS X Setup Guide</a></p>
 <h2 id="display-the-firstlast-few-lines-head-and-tail">Display the first/last few lines 'head' and 'tail'</h2>
 <div class="hlcode"><pre><span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">5</span> <span class="n">demo</span><span class="p">.</span><span class="n">txt</span>
@@ -29,7 +43,17 @@
 <h2 id="display-the-custom-line">Display the custom line</h2>
 <div class="hlcode"><pre><span class="n">sed</span> <span class="o">-</span><span class="n">n</span> <span class="err">&#39;</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="n">p</span><span class="err">&#39;</span> <span class="n">demo</span><span class="p">.</span><span class="n">txt</span>
 </pre></div>
-</div>
+
+
+<h2 id="create-mutiple-dictionaries-from-001-to-100">Create mutiple dictionaries from 001 to 100</h2>
+<div class="hlcode"><pre><span class="n">mkdir</span> <span class="p">{</span><span class="mf">001..100</span><span class="p">}</span>
+</pre></div>
+
+
+<h2 id="resize-image">Resize Image</h2>
+<div class="hlcode"><pre><span class="n">ls</span> <span class="o">*</span><span class="p">.</span><span class="n">jpg</span><span class="o">|</span><span class="n">sed</span> <span class="o">-</span><span class="n">e</span> <span class="err">&#39;</span><span class="n">s</span><span class="o">/</span><span class="err">\</span><span class="p">..</span><span class="err">*/</span><span class="o">/</span><span class="err">&#39;</span><span class="o">|</span><span class="n">xargs</span> <span class="o">-</span><span class="n">I</span> <span class="n">X</span> <span class="n">convert</span> <span class="n">X</span><span class="p">.</span><span class="n">jpg</span> <span class="mi">50</span><span class="o">%</span> <span class="n">X</span><span class="o">-</span><span class="n">resized</span><span class="p">.</span><span class="n">jpg</span>
+</pre></div>
+    </div>
 
         </div>
         <div id="footer">
@@ -38,6 +62,9 @@
                 Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.
             </span>
         </div>
-        
+<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F754de327571c0ba7ff50a61fc964e196' type='text/javascript'%3E%3C/script%3E"));
+</script>
     </body>
 </html>

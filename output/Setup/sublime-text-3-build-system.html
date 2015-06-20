@@ -10,25 +10,75 @@
     </head>
 
     <body>
+        <a href="https://github.com/tankywoo/wiki.tankywoo.com"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+        <!--
+        <div id="nav">
+            <ul>
+                <li><a href="http://tankywoo.com"></a></li>
+                <li><a href="">Github</a></li>
+                <li><a href="">Simiki</a></li>
+            </ul>
+        </div>
+        -->
         <div id="container">
             
-<div id="header">
-  <div id="post-nav"><a href="/">Home</a>&nbsp;»&nbsp;<a href="/#Setup">Setup</a>&nbsp;»&nbsp;Sublime Text Build System</div>
-</div>
-<div class="clearfix"></div>
-<div id="title">Sublime Text Build System</div>
-  <div id="content">
-  <h1 id="reference">Reference</h1>
+    <div id="header">
+        <div id="post-nav">
+            
+            <a href="/">Home</a> » <a href="/#Setup">Setup</a> » Sublime Text Build System
+            
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="title">Sublime Text Build System</div>
+    <div id="content">
+        <h1 id="reference">Reference</h1>
 <p><a href="http://docs.sublimetext.info/en/latest/file_processing/build_systems.html">Sublime Text Unofficial Documentation</a></p>
 <h2 id="python">Python</h2>
-<p>Save the following code as <code>python.sublime-build</code> in <code>/Users/lax/Library/Application Support/Sublime Text 3/Packages/User</code> under Mac OS X</p>
+<p>Save the following code as <code>*.sublime-build</code> in <code>/Users/lax/Library/Application Support/Sublime Text 3/Packages/User</code> under Mac OS X</p>
 <div class="hlcode"><pre><span class="p">{</span>
     <span class="s">&quot;cmd&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s">&quot;/Users/lax/VEnv/bin/python&quot;</span><span class="p">,</span> <span class="s">&quot;-u&quot;</span><span class="p">,</span> <span class="s">&quot;$file&quot;</span><span class="p">],</span>
     <span class="s">&quot;file_regex&quot;</span><span class="o">:</span> <span class="s">&quot;^[ ]*File </span><span class="se">\&quot;</span><span class="s">(...*?)</span><span class="se">\&quot;</span><span class="s">, line ([0-9]*)&quot;</span><span class="p">,</span>
     <span class="s">&quot;selector&quot;</span><span class="o">:</span> <span class="s">&quot;source.python&quot;</span>
 <span class="p">}</span>
 </pre></div>
-</div>
+
+
+<h3 id="c">C++</h3>
+<p>This configuration is specificed for Clang and assumes Zsh installed.
+Save the following code as <code>*.sublime-build</code> in <code>/Users/lax/Library/Application Support/Sublime Text 3/Packages/User</code> under Mac OS X</p>
+<div class="hlcode"><pre><span class="p">{</span>
+    <span class="s2">&quot;cmd&quot;</span><span class="o">:</span> <span class="cp">[</span><span class="s2">&quot;clang++&quot;</span><span class="p">,</span> <span class="s2">&quot;-std=c++11&quot;</span><span class="p">,</span> <span class="s2">&quot;-stdlib=libc++&quot;</span><span class="p">,</span> <span class="s2">&quot;${file}&quot;</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;${file_base_name}&quot;</span><span class="cp">]</span><span class="o">,</span>
+    <span class="s2">&quot;file_regex&quot;</span><span class="o">:</span> <span class="s2">&quot;^(..</span><span class="cp">[</span><span class="p">^:</span><span class="cp">]</span><span class="s2">*):(</span><span class="cp">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="cp">]</span><span class="s2">+):?(</span><span class="cp">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="cp">]</span><span class="s2">+)?:? (.*)$&quot;</span><span class="o">,</span>
+    <span class="s2">&quot;working_dir&quot;</span><span class="o">:</span> <span class="s2">&quot;${file_path}&quot;</span><span class="o">,</span>
+    <span class="s2">&quot;selector&quot;</span><span class="o">:</span> <span class="s2">&quot;source.c, source.c++&quot;</span><span class="o">,</span>
+
+    <span class="s2">&quot;variants&quot;</span><span class="o">:</span>
+    <span class="cp">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Run&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;cmd&quot;</span><span class="p">:</span> <span class="err">[</span><span class="s2">&quot;zsh&quot;</span><span class="p">,</span> <span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;clang++ -std=c++11 -stdlib=libc++ &#39;${file}&#39; -o &#39;${file_path}/${file_base_name}&#39; &amp;&amp; &#39;${file_path}/${file_base_name}&#39;&quot;</span><span class="cp">]</span>
+        <span class="p">}</span>
+    <span class="o">]</span>
+<span class="err">}</span>
+</pre></div>
+
+
+<h3 id="user-preferences">User Preferences</h3>
+<div class="hlcode"><pre><span class="p">{</span>
+    <span class="s2">&quot;color_scheme&quot;</span><span class="o">:</span> <span class="s2">&quot;Packages/Color Scheme - Default/Monokai.tmTheme&quot;</span><span class="o">,</span>
+    <span class="s2">&quot;font_face&quot;</span><span class="o">:</span> <span class="s2">&quot;Menlo&quot;</span><span class="o">,</span>
+    <span class="s2">&quot;font_size&quot;</span><span class="o">:</span> <span class="m">14</span><span class="o">,</span>
+    <span class="s2">&quot;theme&quot;</span><span class="o">:</span> <span class="s2">&quot;Soda Light 3.sublime-theme&quot;</span><span class="o">,</span>
+    <span class="s2">&quot;translate_tabs_to_spaces&quot;</span><span class="o">:</span> <span class="n">true</span><span class="o">,</span>
+    <span class="s2">&quot;soda_folder_icons&quot;</span><span class="o">:</span> <span class="n">true</span><span class="o">,</span>
+    <span class="s2">&quot;ignored_packages&quot;</span><span class="o">:</span>
+    <span class="cp">[</span>
+        <span class="s2">&quot;Vintage&quot;</span>
+    <span class="cp">]</span>
+<span class="p">}</span>
+</pre></div>
+    </div>
 
         </div>
         <div id="footer">
@@ -37,6 +87,9 @@
                 Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.
             </span>
         </div>
-        
+<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F754de327571c0ba7ff50a61fc964e196' type='text/javascript'%3E%3C/script%3E"));
+</script>
     </body>
 </html>

@@ -10,16 +10,52 @@
     </head>
 
     <body>
+        <a href="https://github.com/tankywoo/wiki.tankywoo.com"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+        <!--
+        <div id="nav">
+            <ul>
+                <li><a href="http://tankywoo.com"></a></li>
+                <li><a href="">Github</a></li>
+                <li><a href="">Simiki</a></li>
+            </ul>
+        </div>
+        -->
         <div id="container">
             
-<div id="header">
-  <div id="post-nav"><a href="/">Home</a>&nbsp;»&nbsp;<a href="/#Setup">Setup</a>&nbsp;»&nbsp;Mac OS X Setup</div>
-</div>
-<div class="clearfix"></div>
-<div id="title">Mac OS X Setup</div>
-  <div id="content">
-  <h1 id="reference">Reference</h1>
+    <div id="header">
+        <div id="post-nav">
+            
+            <a href="/">Home</a> » <a href="/#Setup">Setup</a> » Mac OS X Setup
+            
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="title">Mac OS X Setup</div>
+    <div id="content">
+        <h1 id="reference">Reference</h1>
 <p><a href="http://www.sourabhbajaj.com/mac-setup">Mac OS X Setup Guide</a></p>
+<h3 id="alias">Alias</h3>
+<p>OS X has a neat command-line tool called pbcopy which takes the standard input and places it in the clipboard to paste into other applications.</p>
+<p>In Ubuntu(or any Linux distro with Xwindows), a similar tool is xclip.</p>
+<div class="hlcode"><pre><span class="n">alias</span> <span class="n">pbcopy</span><span class="o">=</span><span class="err">&#39;</span><span class="n">xclip</span> <span class="o">-</span><span class="n">selection</span> <span class="n">clipboard</span><span class="err">&#39;</span>
+<span class="n">alias</span> <span class="n">pbpaste</span><span class="o">=</span><span class="err">&#39;</span><span class="n">xclip</span> <span class="o">-</span><span class="n">selection</span> <span class="n">clipboard</span> <span class="o">-</span><span class="n">o</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<p>Now you can pipe any text to pbcopy</p>
+<div class="hlcode"><pre><span class="n">cat</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span><span class="o">/</span><span class="n">id_dsa</span><span class="p">.</span><span class="n">pub</span> <span class="o">|</span> <span class="n">pbcopy</span>
+</pre></div>
+
+
+<h2 id="python">Python</h2>
+<p>I highly recommend to use Anaconda.</p>
+<p>Test openblas and such kind of things.</p>
+<div class="hlcode"><pre><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s">&quot;import numpy as np; np.show_config()&quot;</span>
+</pre></div>
+
+
+<p>Install openblas then compiling numpy </p>
+<p>http://dedupe.readthedocs.org/en/latest/OSX-Install-Notes.html</p>
 <h2 id="c">C++</h2>
 <p>Make sure you have installed Xcode command line tools. Check the c++ version to make sure it is Clang 4.0+</p>
 <div class="hlcode"><pre><span class="err">$</span> <span class="n">c</span><span class="o">++</span> <span class="o">--</span><span class="n">version</span>
@@ -56,7 +92,7 @@
 
 
 <p>You should have JAVA working now. If you use Eclipse as your Java IDE it'll prompt you to install Java 6, go ahead and click Ok.</p>
-</div>
+    </div>
 
         </div>
         <div id="footer">
@@ -65,6 +101,9 @@
                 Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.
             </span>
         </div>
-        
+<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F754de327571c0ba7ff50a61fc964e196' type='text/javascript'%3E%3C/script%3E"));
+</script>
     </body>
 </html>
