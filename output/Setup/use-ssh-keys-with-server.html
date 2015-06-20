@@ -3,7 +3,7 @@
     <head>
         <link rel="Stylesheet" type="text/css" href="/static/css/style.css">
         <link rel="Stylesheet" type="text/css" href="/static/css/tango.css">
-        <title>MUse SSH Keys with Server - Vanechu · Notes</title>
+        <title>Use SSH Keys with Server - Vanechu · Notes</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,14 +25,14 @@
     <div id="header">
         <div id="post-nav">
             
-            <a href="/">Home</a> » <a href="/#Setup">Setup</a> » MUse SSH Keys with Server
+            <a href="/">Home</a> » <a href="/#Setup">Setup</a> » Use SSH Keys with Server
             
         </div>
     </div>
     <div class="clearfix"></div>
-    <div id="title">MUse SSH Keys with Server</div>
+    <div id="title">Use SSH Keys with Server</div>
     <div id="content">
-        <h3 id="step-one-create-the-rsa-key-pair">Step One — Create the RSA Key Pair</h3>
+        <h2 id="step-one-create-the-rsa-key-pair">Step One — Create the RSA Key Pair</h2>
 <div class="hlcode"><pre><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span>
 </pre></div>
 
@@ -74,6 +74,17 @@
 
 
 <p>Now your server's root login is protected and you can test this by trying to SSH directly as root to this server from a system that doesn't have its keys shared and you will be automatically kicked out without being prompted for a root password.</p>
+<h2 id="remote-deployment">Remote Deployment</h2>
+<h3 id="rsync">rsync</h3>
+<ul>
+<li>-r recursive - recurse into directories</li>
+<li>-u update - skip files that are newer on the receiver</li>
+<li>-i itemize - output a change summary</li>
+</ul>
+<div class="hlcode"><pre><span class="n">rsync</span> <span class="o">-</span><span class="n">rui</span> <span class="p">.</span><span class="o">/*</span> <span class="n">xxx</span><span class="err">@</span><span class="n">laxxx</span><span class="p">.</span><span class="n">org</span><span class="o">:/</span><span class="n">path</span><span class="o">/</span><span class="n">wiki</span><span class="p">.</span><span class="n">laxxx</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">public_html</span><span class="o">/</span>
+</pre></div>
+
+
 <h1 id="reference">Reference</h1>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets">SHow To Use SSH Keys with DigitalOcean Droplets</a></p>
     </div>

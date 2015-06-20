@@ -1,10 +1,10 @@
 ---
-title: "MUse SSH Keys with Server"
+title: "Use SSH Keys with Server"
 layout: page
-date: 2014-08-08 00:00
+date: 2015-06-20 00:00
 ---
 
-### Step One — Create the RSA Key Pair
+## Step One — Create the RSA Key Pair
 
 
 ```
@@ -61,6 +61,19 @@ root       681  0.0  0.1  49948  2332 ?        Ss    2012   3:23 /usr/sbin/sshd 
 
 Now your server's root login is protected and you can test this by trying to SSH directly as root to this server from a system that doesn't have its keys shared and you will be automatically kicked out without being prompted for a root password.
 
+
+
+## Remote Deployment
+
+### rsync
+
+- -r recursive - recurse into directories
+- -u update - skip files that are newer on the receiver
+- -i itemize - output a change summary
+
+```
+rsync -rui ./* xxx@laxxx.org:/path/wiki.laxxx.org/public_html/
+```
 
 
 # Reference #
