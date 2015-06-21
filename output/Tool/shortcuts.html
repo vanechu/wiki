@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="Stylesheet" type="text/css" href="/static/css/tango.css">
+        <title>Editor Shortcuts - Vanechu · Notes</title>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body>
+<!--         <a href="https://github.com/tankywoo/wiki.tankywoo.com"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a> -->
+        <!--
+        <div id="nav">
+            <ul>
+                <li><a href="http://tankywoo.com"></a></li>
+                <li><a href="">Github</a></li>
+                <li><a href="">Simiki</a></li>
+            </ul>
+        </div>
+        -->
+        <div id="container">
+            
+    <div id="header">
+        <div id="post-nav">
+            
+            <a href="/">Home</a> » <a href="/#Tool">Tool</a> » Editor Shortcuts
+            
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="title">Editor Shortcuts</div>
+    <div id="content">
+        <h2 id="gnu-readline">GNU Readline</h2>
+<h3 id="basic-moves">Basic moves</h3>
+<div class="hlcode"><pre><span class="n">Move</span> <span class="n">back</span> <span class="n">one</span> <span class="n">character</span><span class="p">.</span>        <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">Move</span> <span class="n">forward</span> <span class="n">one</span> <span class="n">character</span><span class="p">.</span>     <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">f</span>
+<span class="n">Delete</span> <span class="n">current</span> <span class="n">character</span><span class="p">.</span>       <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">d</span>
+<span class="n">Delete</span> <span class="n">previous</span> <span class="n">character</span><span class="p">.</span>      <span class="n">Backspace</span>
+<span class="n">Undo</span><span class="p">.</span>                           <span class="n">Ctrl</span> <span class="o">+</span> <span class="o">-</span>
+</pre></div>
+
+
+<h3 id="moving-faster">Moving faster</h3>
+<div class="hlcode"><pre><span class="n">Move</span> <span class="n">to</span> <span class="n">the</span> <span class="n">start</span> <span class="n">of</span> <span class="n">line</span><span class="p">.</span>      <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">a</span>
+<span class="n">Move</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">line</span><span class="p">.</span>        <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">e</span>
+<span class="n">Move</span> <span class="n">forward</span> <span class="n">a</span> <span class="n">word</span><span class="p">.</span>            <span class="n">Meta</span> <span class="o">+</span> <span class="n">f</span> <span class="p">(</span><span class="n">a</span> <span class="n">word</span> <span class="n">contains</span> <span class="n">alphabets</span> <span class="n">and</span> <span class="n">digits</span><span class="p">,</span> <span class="n">no</span> <span class="n">symbols</span><span class="p">)</span>
+<span class="n">Move</span> <span class="n">backward</span> <span class="n">a</span> <span class="n">word</span><span class="p">.</span>           <span class="n">Meta</span> <span class="o">+</span> <span class="n">b</span>
+<span class="n">Clear</span> <span class="n">the</span> <span class="n">screen</span><span class="p">.</span>               <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">l</span>
+</pre></div>
+
+
+<p>What is <code>Meta</code>? <code>Meta</code> is your <code>Alt</code> key, normally. For Mac OSX user, you need to enable it yourself. Open Terminal &gt; Preferences &gt; Settings &gt; Keyboard, and enable Use option as meta key. Meta key, by convention, is used for operations on word.</p>
+<h3 id="cut-and-paste">Cut and paste</h3>
+<div class="hlcode"><pre><span class="n">Cut</span> <span class="n">from</span> <span class="n">cursor</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">line</span><span class="p">.</span>       <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">k</span>
+<span class="n">Cut</span> <span class="n">from</span> <span class="n">cursor</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">word</span><span class="p">.</span>       <span class="n">Meta</span> <span class="o">+</span> <span class="n">d</span>
+<span class="n">Cut</span> <span class="n">from</span> <span class="n">cursor</span> <span class="n">to</span> <span class="n">the</span> <span class="n">start</span> <span class="n">of</span> <span class="n">word</span><span class="p">.</span>     <span class="n">Meta</span> <span class="o">+</span> <span class="n">Backspace</span>
+<span class="n">Cut</span> <span class="n">from</span> <span class="n">cursor</span> <span class="n">to</span> <span class="n">previous</span> <span class="n">whitespace</span><span class="p">.</span>   <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">w</span>
+<span class="n">Paste</span> <span class="n">the</span> <span class="n">last</span> <span class="n">cut</span> <span class="n">text</span><span class="p">.</span>                  <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">Loop</span> <span class="n">through</span> <span class="n">and</span> <span class="n">paste</span> <span class="n">previously</span> <span class="n">cut</span> <span class="n">text</span><span class="p">.</span> <span class="n">Meta</span> <span class="o">+</span> <span class="n">y</span> <span class="p">(</span><span class="n">use</span> <span class="n">it</span> <span class="n">after</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Loop</span> <span class="n">through</span> <span class="n">and</span> <span class="n">paste</span> <span class="n">the</span> <span class="n">last</span> <span class="n">argument</span> <span class="n">of</span> <span class="n">previous</span> <span class="n">commands</span><span class="p">.</span> <span class="n">Meta</span> <span class="o">+</span> <span class="p">.</span>
+</pre></div>
+
+
+<h3 id="search-the-command-history">Search the command history</h3>
+<div class="hlcode"><pre><span class="n">Search</span> <span class="n">as</span> <span class="n">you</span> <span class="n">type</span><span class="p">.</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">r</span> <span class="n">and</span> <span class="n">type</span> <span class="n">the</span> <span class="n">search</span> <span class="n">term</span><span class="p">;</span> <span class="n">Repeat</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">r</span> <span class="n">to</span> <span class="n">loop</span> <span class="n">through</span> <span class="n">results</span><span class="p">.</span>
+<span class="n">Search</span> <span class="n">the</span> <span class="n">last</span> <span class="n">remembered</span> <span class="n">search</span> <span class="n">term</span><span class="p">.</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">r</span> <span class="n">twice</span><span class="p">.</span>
+<span class="n">End</span> <span class="n">the</span> <span class="n">search</span> <span class="n">at</span> <span class="n">current</span> <span class="n">history</span> <span class="n">entry</span><span class="p">.</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">j</span>
+<span class="n">Cancel</span> <span class="n">the</span> <span class="n">search</span> <span class="n">and</span> <span class="n">restore</span> <span class="n">original</span> <span class="n">line</span><span class="p">.</span> <span class="n">Ctrl</span> <span class="o">+</span> <span class="n">g</span>
+</pre></div>
+
+
+<h3 id="reference">Reference</h3>
+<p><a href="http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing">Bash Reference Manual</a>
+<a href="http://teohm.com/blog/2012/01/04/shortcuts-to-move-faster-in-bash-command-line/">Shortcuts to Move Faster in Bash Command Line</a></p>
+<h2 id="sublime-text-3">Sublime Text 3</h2>
+<h3 id="editing">Editing</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + X</td>
+<td>Cut line</td>
+</tr>
+<tr>
+<td>Ctrl + ↩</td>
+<td>Insert line after</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + ↩</td>
+<td>Insert line before</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + ↑</td>
+<td>Move line/selection up</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + ↓</td>
+<td>Move line/selection down</td>
+</tr>
+<tr>
+<td>Ctrl + L</td>
+<td>Select line - Repeat to select next lines</td>
+</tr>
+<tr>
+<td>Ctrl + D</td>
+<td>Select word - Repeat select others occurrences</td>
+</tr>
+<tr>
+<td>Ctrl + M</td>
+<td>Jump to closing parentheses Repeat to jump to opening parentheses</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + M</td>
+<td>Select all contents of the current parentheses</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + K</td>
+<td>Delete Line</td>
+</tr>
+<tr>
+<td>Ctrl + KK</td>
+<td>Delete from cursor to end of line</td>
+</tr>
+<tr>
+<td>Ctrl + K + ⌫</td>
+<td>Delete from cursor to start of line</td>
+</tr>
+<tr>
+<td>Ctrl + ]</td>
+<td>Indent current line(s)</td>
+</tr>
+<tr>
+<td>Ctrl + [</td>
+<td>Un-indent current line(s)</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + D</td>
+<td>Duplicate line(s)</td>
+</tr>
+<tr>
+<td>Ctrl + J</td>
+<td>Join line below to the end of the current line</td>
+</tr>
+<tr>
+<td>Ctrl + /</td>
+<td>Comment/un-comment current line</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + /</td>
+<td>Block comment current selection</td>
+</tr>
+<tr>
+<td>Ctrl + Y</td>
+<td>Redo, or repeat last keyboard shortcut command</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + V</td>
+<td>Paste and indent correctly</td>
+</tr>
+<tr>
+<td>Ctrl + Space</td>
+<td>Select next auto-complete suggestion</td>
+</tr>
+<tr>
+<td>Ctrl + U</td>
+<td>soft undo; jumps to your last change before undoing change when repeated</td>
+</tr>
+<tr>
+<td>Alt + ⇧ + W</td>
+<td>Wrap Selection in html tag</td>
+</tr>
+</tbody>
+</table>
+<h3 id="linux">Linux</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt + ⇧ + Up</td>
+<td>Column selection up</td>
+</tr>
+<tr>
+<td>Alt + ⇧ + Down</td>
+<td>Column selection down</td>
+</tr>
+</tbody>
+</table>
+<h3 id="navigationgoto-anywhere">Navigation/Goto Anywhere</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HOME</td>
+<td>Move to begining of line</td>
+</tr>
+<tr>
+<td>END</td>
+<td>Move to ending of line</td>
+</tr>
+<tr>
+<td>Ctrl + P</td>
+<td>Quick-open files by name</td>
+</tr>
+<tr>
+<td>Ctrl + R</td>
+<td>Goto symbol</td>
+</tr>
+<tr>
+<td>Ctrl + ;</td>
+<td>Goto word in current file</td>
+</tr>
+<tr>
+<td>Ctrl + G</td>
+<td>Goto line in current file</td>
+</tr>
+</tbody>
+</table>
+<h3 id="general">General</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + ⇧ + P</td>
+<td>Command prompt</td>
+</tr>
+<tr>
+<td>Ctrl + KB</td>
+<td>Toggle side bar</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + Alt + P</td>
+<td>Show scope in status bar</td>
+</tr>
+</tbody>
+</table>
+<h3 id="findreplace">Find/Replace</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + F</td>
+<td>Find</td>
+</tr>
+<tr>
+<td>Ctrl + H</td>
+<td>Replace</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + F</td>
+<td>Find in files</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tabs">Tabs</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + ⇧ + t</td>
+<td>Open last closed tab</td>
+</tr>
+<tr>
+<td>Ctrl + PgUp</td>
+<td>Cycle up through tabs</td>
+</tr>
+<tr>
+<td>Ctrl + PgDn</td>
+<td>Cycle down through tabs</td>
+</tr>
+<tr>
+<td>Ctrl + ⇆</td>
+<td>Find in files</td>
+</tr>
+<tr>
+<td>Ctrl + W</td>
+<td>Close current tab</td>
+</tr>
+<tr>
+<td>Alt + [NUM]</td>
+<td>Switch to tab number [NUM] where [NUM] &lt;= number of tabs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="split-window">Split window</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alt + ⇧ + 2</td>
+<td>Split view into two columns</td>
+</tr>
+<tr>
+<td>Alt + ⇧ + 1</td>
+<td>Revert view to single column</td>
+</tr>
+<tr>
+<td>Alt + ⇧ + 5</td>
+<td>Set view to grid (4 groups)</td>
+</tr>
+<tr>
+<td>Ctrl + [NUM]</td>
+<td>Jump to group where num is 1-4</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + [NUM]</td>
+<td>Move file to specified group where num is 1-4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bookmarks">Bookmarks</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + F2</td>
+<td>Toggle bookmark</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>Next bookmark</td>
+</tr>
+<tr>
+<td>⇧ + F2</td>
+<td>Previous bookmark</td>
+</tr>
+<tr>
+<td>Ctrl + ⇧ + F2</td>
+<td>Clear bookmarks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="text-manipulation">Text manipulation</h3>
+<table>
+<thead>
+<tr>
+<th>Keypress</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl + KU</td>
+<td>Transform to Uppercase</td>
+</tr>
+<tr>
+<td>Ctrl + KL</td>
+<td>Transform to Lowercase</td>
+</tr>
+</tbody>
+</table>
+    </div>
+
+        </div>
+        <div id="footer">
+            <span>
+                Copyright © 2012-2014 vanechu.
+                Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.
+            </span>
+        </div>
+<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F754de327571c0ba7ff50a61fc964e196' type='text/javascript'%3E%3C/script%3E"));
+</script>
+    </body>
+</html>
