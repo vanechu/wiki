@@ -33,16 +33,480 @@
     <div id="title">C++ basic</div>
     <div id="content">
         <h1 id="reference">Reference</h1>
-<p><a href="http://kumu-linux.github.io/blog/2013/08/06/tmux/">Linux下终端利器tmux</a></p>
+<p><a href="https://courses.edx.org/courses/course-v1:PekingX+04831750.1x+2015T1/info">04831750.1x C++ 程序设计</a></p>
 <h2 id="chapter-1">Chapter 1</h2>
-<p>tmux contains:</p>
+<h3 id="11">1.1 函数指针</h3>
+<h4 id="definition">Definition</h4>
+<p>类型名 (* 指针变量名)(参数类型1, 参数类型2,…);</p>
+<div class="hlcode"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">void</span> <span class="nf">PrintMin</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">b</span> <span class="p">)</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">);</span>
+    <span class="k">else</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span> <span class="n">pf</span><span class="p">)(</span><span class="kt">int</span> <span class="p">,</span><span class="kt">int</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="n">pf</span> <span class="o">=</span> <span class="n">PrintMin</span><span class="p">;</span>
+    <span class="n">pf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> 
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="qsort">qsort</h4>
+<div class="hlcode"><pre><span class="kt">void</span> <span class="nf">qsort</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nelem</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span>
+ <span class="kt">int</span> <span class="p">(</span> <span class="o">*</span> <span class="n">pfCompare</span><span class="p">)(</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">));</span>
+</pre></div>
+
+
+<div class="hlcode"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="kt">int</span> <span class="nf">MyCompare</span><span class="p">(</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">elem1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">elem2</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">p1</span><span class="p">,</span> <span class="o">*</span> <span class="n">p2</span><span class="p">;</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">elem1</span><span class="p">;</span> <span class="c1">// “* elem1” 非法</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span> <span class="n">elem2</span><span class="p">;</span> <span class="c1">// “* elem2” 非法</span>
+    <span class="k">return</span> <span class="p">(</span><span class="o">*</span> <span class="n">p1</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="o">*</span> <span class="n">p2</span> <span class="o">%</span> <span class="mi">10</span> <span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">#define NUM 5</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">an</span><span class="p">[</span><span class="n">NUM</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">8</span><span class="p">,</span><span class="mi">123</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span> <span class="p">};</span>
+    <span class="n">qsort</span><span class="p">(</span> <span class="n">an</span><span class="p">,</span><span class="n">NUM</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">),</span> <span class="n">MyCompare</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">NUM</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span><span class="n">an</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="12">1.2 命令行参数</h3>
+<h4 id="definition_1">Definition</h4>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[]){}</span>
+</pre></div>
+
+
+<p><code>argc</code> : 命令行参数的个数。C/C++语言规定，可执行程序程序本身的文件名，也算一个命令行参数，因此，argc的值至少是1
+<code>argv</code> : 指针数组，其中的每个元素都是一个char* 类型的指针，该指针指向一个字符串，这个字符串里就存放着命令行参数</p>
+<h4 id="example">Example</h4>
+<div class="hlcode"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;%sn&quot;</span><span class="p">,</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="13">1.3 位运算</h3>
+<h4 id="_1">按位与 "&amp;"</h4>
+<h5 id="definition_2">Definition</h5>
+<p>将参与运算的两操作数各对应的二进制位进行与操作，只有对应的两个二进位均为1时，结果的对应二进制位才为1，否则为0。</p>
+<div class="hlcode"><pre><span class="err">例如：表达式“</span><span class="mi">21</span> <span class="o">&amp;</span> <span class="mi">18</span> <span class="err">”的计算结果是</span><span class="mi">16</span><span class="p">(</span><span class="err">即二进制数</span><span class="mi">10000</span><span class="p">)</span><span class="err">，因为：</span>
+
+<span class="mi">21</span> <span class="err">用二进制表示就是：</span>
+<span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0101</span>
+<span class="mi">18</span> <span class="err">用二进制表示就是</span><span class="o">:</span>
+<span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0010</span>
+<span class="err">二者按位与所得结果是：</span>
+<span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0000</span>
+</pre></div>
+
+
+<h5 id="usage">Usage</h5>
+<p>通常用来将某变量中的某些位清0且同时保留其他位不变。也可以用来获取某变量中的某一位。</p>
+<div class="hlcode"><pre><span class="err">例如，如果需要将</span><span class="kt">int</span><span class="err">型变量</span><span class="n">n</span><span class="err">的低</span><span class="mi">8</span><span class="err">位全置成</span><span class="mi">0</span><span class="err">，而其余位不变，则可以执行：</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">&amp;</span> <span class="mh">0xffffff00</span><span class="p">;</span>
+<span class="nl">or:</span>
+<span class="n">n</span> <span class="o">&amp;=</span> <span class="mh">0xffffff00</span><span class="p">;</span>
+<span class="err">如果</span><span class="n">n</span><span class="err">是</span><span class="kt">short</span><span class="err">类型的，则只需执行：</span>
+<span class="n">n</span> <span class="o">&amp;=</span> <span class="mh">0xff00</span><span class="p">;</span>
+</pre></div>
+
+
+<h4 id="_2">按位或 "|"</h4>
+<h5 id="definition_3">Definition</h5>
+<p>将参与运算的两操作数各对应的二进制位进行或操作，只有对应的两个二进位都为0时，结果的对应二进制位才是0，否则为1。</p>
+<div class="hlcode"><pre><span class="err">例如：表达式“</span><span class="mi">21</span> <span class="o">|</span> <span class="mi">18</span> <span class="err">”的值是</span><span class="mi">23</span><span class="err">，因为：</span>
+<span class="mi">21</span><span class="o">:</span>    <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0101</span>
+<span class="mi">18</span><span class="o">:</span>    <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0010</span>
+<span class="mi">21</span><span class="o">|</span><span class="mi">18</span><span class="o">:</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0111</span>
+</pre></div>
+
+
+<h5 id="usage_1">Usage</h5>
+<p>按位或运算通常用来将某变量中的某些位置1且保留其他位不变。</p>
+<div class="hlcode"><pre><span class="err">例如，如果需要将</span><span class="kt">int</span><span class="err">型变量</span><span class="n">n</span><span class="err">的低</span><span class="mi">8</span><span class="err">位全置成</span><span class="mi">1</span><span class="err">，而</span>
+<span class="err">其余位不变，则可以执行：</span>
+<span class="n">n</span> <span class="o">|=</span> <span class="mh">0xff</span><span class="p">;</span>
+<span class="mh">0xff</span><span class="o">:</span> <span class="mi">1111</span> <span class="mi">1111</span>
+</pre></div>
+
+
+<h4 id="_3">按位异或 "^"</h4>
+<h5 id="definition_4">Definition</h5>
+<p>将参与运算的两操作数各对应的二进制位进行异或操作，即只有对应的两个二进位不相同时，结果的对应二进制位才是1，否则为0。</p>
+<div class="hlcode"><pre><span class="err">例如：表达式“</span><span class="mi">21</span> <span class="o">^</span> <span class="mi">18</span> <span class="err">”的值是</span><span class="mi">7</span><span class="p">(</span><span class="err">即二进制数</span><span class="mi">111</span><span class="p">)</span><span class="err">。</span>
+<span class="mi">21</span><span class="o">:</span>    <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0101</span>
+<span class="mi">18</span><span class="o">:</span>    <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0010</span>
+<span class="mi">21</span><span class="o">^</span><span class="mi">18</span><span class="o">:</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0111</span>
+</pre></div>
+
+
+<h5 id="usage_2">Usage</h5>
 <ul>
-<li>session :一个服务器可以包含多个会话</li>
-<li>window :一个会话可以包含多个窗口</li>
-<li>pane :一个窗口可以包含多个面板[强悍的分屏]</li>
+<li>按位异或运算通常用来将某变量中的某些位取反，且保留其他位不变。</li>
 </ul>
-<h2 id="usage">Usage</h2>
-<p><code>Ctrl+b</code> first, then:         </p>
+<div class="hlcode"><pre><span class="n">n</span> <span class="o">^=</span> <span class="mh">0xff</span><span class="p">;</span>
+<span class="mh">0xff</span><span class="o">:</span> <span class="mi">1111</span> <span class="mi">1111</span>
+</pre></div>
+
+
+<ul>
+<li>
+<p>异或运算的特点是:
+如果 a^b=c，那么就有 c^b = a以及c^a=b(穷举法可证)。此规律可以用来进行最简单的加密和解密。</p>
+</li>
+<li>
+<p>另外异或运算还能实现不通过临时变量，就能交换两个变量的值：即实现a,b值交换。穷举法可证。</p>
+</li>
+</ul>
+<div class="hlcode"><pre> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+ <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>
+ <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">^</span> <span class="n">a</span><span class="p">;</span>
+ <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">;</span>
+</pre></div>
+
+
+<h4 id="_4">按位非 "~"</h4>
+<h5 id="definition_5">Definition</h5>
+<p>将操作数中的二进制位0变成1, 1变成0。</p>
+<div class="hlcode"><pre><span class="err">例如，表达式“</span><span class="o">~</span><span class="mi">21</span><span class="err">”的值是整型数</span> <span class="mh">0xffffffea</span>
+<span class="mi">21</span><span class="o">:</span>  <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0001</span> <span class="mo">0101</span>
+<span class="o">~</span><span class="mi">21</span><span class="o">:</span> <span class="mi">1111</span> <span class="mi">1111</span> <span class="mi">1111</span> <span class="mi">1111</span> <span class="mi">1111</span> <span class="mi">1111</span> <span class="mi">1110</span> <span class="mi">1010</span>
+</pre></div>
+
+
+<h4 id="_5">左移运算符 “&lt;&lt;”</h4>
+<p>表达式：a &lt;&lt; b 的值是：将a各二进位全部左移b位后得到的值。左移时，高位丢弃，低位补0。a 的值不因运算而改变。</p>
+<div class="hlcode"><pre><span class="err">例如</span><span class="o">:</span>
+<span class="mi">9</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
+<span class="mi">9</span><span class="err">的二进制形式：</span>
+<span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mi">1001</span>
+<span class="err">因此，表达式“</span><span class="mi">9</span><span class="o">&lt;&lt;</span><span class="mi">4</span><span class="err">”的值，就是将上面的二进制数左移</span><span class="mi">4</span><span class="err">位，得：</span>
+<span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mo">0000</span> <span class="mi">1001</span> <span class="mo">0000</span>
+<span class="err">即为十进制的</span><span class="mi">144</span><span class="err">。</span>
+</pre></div>
+
+
+<h4></h4>
+<p>a &gt;&gt; b 的值是：将a各二进位全部右移b位后得到的值。右移时，移出最右边的位就被丢弃。 a 的值不因运算而改变。</p>
+<p>对于有符号数，如long,int,short,char类型变量，在右移时，符号位（即最高位）将一起移动，并且大多数C/C++编译器规定，如果原符号位为1，则右移时高位就补充1，原符号位为0，则右移时高位就补充0。实际上，右移n位，就相当于左操作数除以2n，<em>并且将结果往小里取整</em>。</p>
+<div class="hlcode"><pre><span class="o">-</span><span class="mi">25</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="o">-</span><span class="mi">2</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">18</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<div class="hlcode"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="kt">short</span> <span class="n">n2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">15</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">n3</span> <span class="o">=</span> <span class="mh">0xffe0</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+    <span class="n">n1</span> <span class="o">=</span> <span class="n">n1</span><span class="o">&gt;&gt;</span><span class="mi">2</span><span class="p">;</span>
+    <span class="n">n2</span> <span class="o">&gt;&gt;=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">n3</span> <span class="o">&gt;&gt;=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">c</span> <span class="o">&gt;&gt;=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span> <span class="s">&quot;n1=%d,n2=%x,n3=%x,c=%x&quot;</span><span class="p">,</span><span class="n">n1</span><span class="p">,</span><span class="n">n2</span><span class="p">,</span><span class="n">n3</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">//输出结果是：n1=3,n2=fffffffe,n3=ffe,c=1</span>
+</pre></div>
+
+
+<h3 id="14">1.4 引用</h3>
+<h4 id="definition_6">Definition</h4>
+<p>定义引用时一定要将其初始化成引用某个变量. 初始化后，它就一直引用该变量，不会再引用别的变量了</p>
+<p><code>类型名 &amp; 引用名 = 某变量名;</code></p>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="c1">// r引用了 n, r的类型是</span>
+</pre></div>
+
+
+<h4 id="_6">引用作为函数的返回值</h4>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span> <span class="n">SetValue</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">SetValue</span><span class="p">()</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">//输出： 40</span>
+</pre></div>
+
+
+<h4 id="_7">常引用</h4>
+<ul>
+<li>定义引用时，前面加const关键字，即为“常引用”. 不能通过常引用去修改其引用的内容:</li>
+</ul>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="c1">//编译错</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span> <span class="c1">// 没问题</span>
+</pre></div>
+
+
+<ul>
+<li>常引用和非常引用的转换</li>
+</ul>
+<p>const T &amp; 和T &amp; 是不同的类型.
+T &amp; 类型的引用或T类型的变量可以用来初始化const T &amp; 类型的引用。
+const T 类型的常变量和const T &amp; 类型的引用则不能用来初始化T &amp;类型的引用，除非进行强制类型转换。</p>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">r1</span><span class="p">;</span> <span class="c1">//错</span>
+
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">&amp;</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">r1</span><span class="p">;</span>  <span class="c1">//对</span>
+</pre></div>
+
+
+<h3 id="15-const">1.5 const</h3>
+<h4 id="_8">常量</h4>
+<div class="hlcode"><pre><span class="k">const</span> <span class="kt">int</span> <span class="n">MAX_VAL</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+</pre></div>
+
+
+<h4 id="_9">常量指针</h4>
+<ul>
+<li>不可通过常量指针修改其指向的内容</li>
+</ul>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span> <span class="n">n</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">//编译出错</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">//ok</span>
+<span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">;</span> <span class="c1">//ok, 常量指针的指向可以变化</span>
+</pre></div>
+
+
+<ul>
+<li>不能把常量指针赋值给非常量指针，反过来可以</li>
+</ul>
+<div class="hlcode"><pre><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">p1</span><span class="p">;</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">p2</span><span class="p">;</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span> <span class="c1">//ok</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span> <span class="c1">//error</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span> <span class="p">)</span> <span class="n">p1</span><span class="p">;</span> <span class="c1">//ok,强制类型转换</span>
+</pre></div>
+
+
+<ul>
+<li>函数参数为常量指针时，可避免函数内部不小心改变参数指针所指地方的内容</li>
+</ul>
+<div class="hlcode"><pre><span class="kt">void</span> <span class="nf">MyPrintf</span><span class="p">(</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">p</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">strcpy</span><span class="p">(</span> <span class="n">p</span><span class="p">,</span><span class="s">&quot;this&quot;</span><span class="p">);</span> <span class="c1">//编译出错</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="n">p</span><span class="p">);</span> <span class="c1">//ok</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="16">1.6 动态内存分配</h3>
+<h4 id="new">new 运算符</h4>
+<ul>
+<li>第一种用法，分配一个变量:</li>
+</ul>
+<p><code>P = new T;</code></p>
+<p>'T'是任意类型名，P是类型为'T*' 的指针。动态分配出一片大小为'sizeof(T)'字节的内存空间，并且将该
+内存空间的起始地址赋值给'P'。比如:</p>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="o">*</span> <span class="n">pn</span><span class="p">;</span>
+<span class="n">pn</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">pn</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</pre></div>
+
+
+<ul>
+<li>第二种用法,分配一个数组:</li>
+</ul>
+<div class="hlcode"><pre><span class="n">P</span> <span class="o">=</span> <span class="n">new</span> <span class="n">T</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+
+<span class="n">T</span> <span class="o">:</span><span class="err">任意类型名</span>
+<span class="n">P</span> <span class="o">:</span><span class="err">类型为</span><span class="n">T</span> <span class="o">*</span> <span class="err">的指针</span> <span class="p">(</span><span class="err">非</span><span class="n">T</span><span class="o">*</span> <span class="p">[])</span>
+<span class="n">N</span> <span class="o">:</span><span class="err">要分配的数组元素的个数，可以是整型表达式</span>
+
+<span class="err">动态分配出一片大小为</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="err">字节的内存空间，并且将该内存空间的起始地址赋值给</span><span class="n">P</span><span class="err">。</span>
+
+<span class="kt">int</span> <span class="o">*</span> <span class="n">pn</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">pn</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mi">20</span><span class="p">];</span>
+<span class="n">pn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="n">pn</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span> <span class="c1">//编译没问题。运行时导致数组越界</span>
+</pre></div>
+
+
+<ul>
+<li>用“new”动态分配的内存空间，一定要用"delete"运算符进行释放</li>
+</ul>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">;</span>
+<span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">delete</span> <span class="n">p</span><span class="p">;</span>
+<span class="n">delete</span> <span class="n">p</span><span class="p">;</span> <span class="c1">//导致异常，一片空间不能被delete多次</span>
+
+<span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+<span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">delete</span> <span class="p">[]</span> <span class="n">p</span><span class="p">;</span> <span class="c1">// 用&quot;delete&quot;释放动态分配的数组，要加&quot;[]&quot;</span>
+</pre></div>
+
+
+<h2 id="chapter-2">Chapter 2</h2>
+<h3 id="21">2.1 类</h3>
+<h4 id="declaration">Declaration</h4>
+<div class="hlcode"><pre><span class="n">class</span> <span class="n">CRectangle</span>
+<span class="p">{</span>
+    <span class="n">public</span>
+    <span class="o">:</span>
+    <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">Init</span><span class="p">(</span> <span class="kt">int</span> <span class="n">w_</span><span class="p">,</span> <span class="kt">int</span> <span class="n">h_</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w_</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="n">h_</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="nf">Area</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="nf">Perimeter</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span> <span class="n">w</span> <span class="o">+</span> <span class="n">h</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">;</span>
+    <span class="n">CRectangle</span> <span class="n">r</span><span class="p">;</span> <span class="c1">//r是一个对象</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">w</span> <span class="o">&gt;&gt;</span> <span class="n">h</span><span class="p">;</span>
+    <span class="n">r</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">Area</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span> <span class="n">Perimeter</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="_10">对象的内存空间</h4>
+<ul>
+<li>对象的大小 = 所有成员变量的大小之和</li>
+<li>E.g. <code>CRectangle</code>类的对象, <code>sizeof(CRectangle) = 8</code></li>
+</ul>
+<h4 id="_11">访问类的成员变量和成员函数</h4>
+<ul>
+<li>用法1: 对象名.成员名</li>
+</ul>
+<div class="hlcode"><pre><span class="n">CRectangle</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">;</span>
+<span class="n">r1</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">r2</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+</pre></div>
+
+
+<ul>
+<li>用法2: 指针-&gt;成员名</li>
+</ul>
+<div class="hlcode"><pre><span class="n">CRectangle</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">;</span>
+<span class="n">CRectangle</span> <span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span> <span class="n">r1</span><span class="p">;</span>
+<span class="n">CRectangle</span> <span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span> <span class="n">r2</span><span class="p">;</span>
+<span class="n">p1</span><span class="o">-&gt;</span><span class="n">w</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">p2</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="c1">//Init作用在p2指向的对象上</span>
+</pre></div>
+
+
+<ul>
+<li>用法3: 引用名.成员名</li>
+</ul>
+<div class="hlcode"><pre><span class="n">CRectangle</span> <span class="n">r2</span><span class="p">;</span>
+<span class="n">CRectangle</span> <span class="o">&amp;</span> <span class="n">rr</span> <span class="o">=</span> <span class="n">r2</span><span class="p">;</span>
+<span class="n">rr</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">rr</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span> <span class="c1">//rr的值变了，r2的值也变</span>
+</pre></div>
+
+
+<ul>
+<li>另一种输出结果的方式</li>
+</ul>
+<div class="hlcode"><pre><span class="kt">void</span> <span class="nf">PrintRectangle</span><span class="p">(</span><span class="n">CRectangle</span> <span class="o">&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">Area</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;,&quot;</span><span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">.</span><span class="n">Perimeter</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="n">CRectangle</span> <span class="n">r3</span><span class="p">;</span>
+<span class="n">r3</span><span class="p">.</span><span class="n">Init</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">PrintRectangle</span><span class="p">(</span><span class="n">r3</span><span class="p">);</span>
+</pre></div>
+
+
+<h3 id="22">2.2 内联成员函数</h3>
+<h4 id="_12">两种方式</h4>
+<ol>
+<li>inline + 成员函数 </li>
+<li>整个函数体出现在类定义内部</li>
+</ol>
+<div class="hlcode"><pre><span class="n">class</span> <span class="n">B</span><span class="p">{</span>
+    <span class="kr">inline</span> <span class="kt">void</span> <span class="n">func1</span><span class="p">();</span> <span class="c1">// 1. inline + 成员函数 </span>
+    <span class="kt">void</span> <span class="nf">func2</span><span class="p">()</span> <span class="p">{</span>  <span class="c1">// 2. 整个函数体出现在类定义内部</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+<span class="kt">void</span> <span class="n">B</span><span class="o">::</span><span class="n">func1</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+
+
+<h3 id="23">2.3 构造函数</h3>
+<h4 id="definition_7">Definition</h4>
+<ul>
+<li>名字与类名相同，可以有参数，不能有返回值(void也不行)</li>
+<li>作用是对对象进行初始化，如给成员变量赋初值</li>
+<li>如果定义类时没写构造函数，则编译器生成一个默认的无参数的构造函数. 默认构造函数无参数，不做任何操作</li>
+<li>如果定义了构造函数，则编译器不生成默认的无参数的构造函数</li>
+<li>对象生成时构造函数自动被调用。对象一旦生成，就再也不能在其上执行构造函数</li>
+<li>一个类可以有多个构造函数</li>
+<li>构造函数最好是public的，private构造函数不能直接用来初始化对象</li>
+</ul>
+<div class="hlcode"><pre><span class="n">class</span> <span class="n">Complex</span> <span class="p">{</span>
+    <span class="n">private</span> <span class="o">:</span>
+    <span class="kt">double</span> <span class="n">real</span><span class="p">,</span> <span class="n">imag</span><span class="p">;</span>
+    <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="nf">Set</span><span class="p">(</span> <span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">i</span> <span class="p">);</span>
+    <span class="n">Complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">i</span> <span class="p">);</span>
+    <span class="n">Complex</span> <span class="p">(</span><span class="kt">double</span> <span class="n">r</span> <span class="p">);</span>
+    <span class="n">Complex</span> <span class="p">(</span><span class="n">Complex</span> <span class="n">c1</span><span class="p">,</span> <span class="n">Complex</span> <span class="n">c2</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">Complex</span><span class="o">::</span><span class="n">Complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">,</span> <span class="kt">double</span> <span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">real</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">imag</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Complex</span><span class="o">::</span><span class="n">Complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">r</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">real</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">imag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Complex</span><span class="o">::</span><span class="n">Complex</span> <span class="p">(</span><span class="n">Complex</span> <span class="n">c1</span><span class="p">,</span> <span class="n">Complex</span> <span class="n">c2</span><span class="p">);</span>
+<span class="p">{</span>
+    <span class="n">real</span> <span class="o">=</span> <span class="n">c1</span><span class="p">.</span><span class="n">real</span><span class="o">+</span><span class="n">c2</span><span class="p">.</span><span class="n">real</span><span class="p">;</span>
+    <span class="n">imag</span> <span class="o">=</span> <span class="n">c1</span><span class="p">.</span><span class="n">imag</span><span class="o">+</span><span class="n">c2</span><span class="p">.</span><span class="n">imag</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">Complex</span> <span class="n">c1</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">,</span> <span class="n">c2</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">c3</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span><span class="p">);</span>
+<span class="c1">// c1 = {3, 0}, c2 = {1, 0}, c3 = {4, 0};</span>
+</pre></div>
+
+
+<h4 id="_13">构造函数在数组中的使用</h4>
+<div class="hlcode"><pre><span class="n">class</span> <span class="n">Test</span> <span class="p">{</span>
+    <span class="nl">public:</span>
+    <span class="n">Test</span><span class="p">(</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">//(1)</span>
+    <span class="n">Test</span><span class="p">(</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">//(2)</span>
+    <span class="n">Test</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">//(3)</span>
+<span class="p">};</span>
+<span class="n">Test</span> <span class="n">array1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">};</span>
+<span class="c1">// 三个元素分别用(1),(2),(3)初始化</span>
+<span class="n">Test</span> <span class="n">array2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">Test</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">Test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
+<span class="c1">// 三个元素分别用(2),(2),(1)初始化</span>
+<span class="n">Test</span> <span class="o">*</span> <span class="n">pArray</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="n">new</span> <span class="n">Test</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">new</span> <span class="n">Test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">};</span>
+<span class="c1">//两个元素分别用(1),(2) 初始化</span>
+</pre></div>
     </div>
 
         </div>

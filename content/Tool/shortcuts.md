@@ -50,9 +50,11 @@ Cancel the search and restore original line. Ctrl + g
 
 ### Reference
 
-[Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing)
-[Shortcuts to Move Faster in Bash Command Line](http://teohm.com/blog/2012/01/04/shortcuts-to-move-faster-in-bash-command-line/)
+- [Bash Reference Manual](http://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing)
+- [Shortcuts to Move Faster in Bash Command Line](http://teohm.com/blog/2012/01/04/shortcuts-to-move-faster-in-bash-command-line/)
 
+
+----
 
 ## Sublime Text 3
 
