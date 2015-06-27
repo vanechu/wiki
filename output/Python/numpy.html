@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="Stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="Stylesheet" type="text/css" href="/static/css/tango.css">
+        <title>Numpy basic - Vanechu · Notes</title>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body>
+<!--         <a href="https://github.com/tankywoo/wiki.tankywoo.com"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a> -->
+        <!--
+        <div id="nav">
+            <ul>
+                <li><a href="http://tankywoo.com"></a></li>
+                <li><a href="">Github</a></li>
+                <li><a href="">Simiki</a></li>
+            </ul>
+        </div>
+        -->
+        <div id="container">
+            
+    <div id="header">
+        <div id="post-nav">
+            
+            <a href="/">Home</a> » <a href="/#Python">Python</a> » Numpy basic
+            
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div id="title">Numpy basic</div>
+    <div id="content">
+        <h2 id="ndarray-broadcasting">Ndarray Broadcasting</h2>
+<p>How numpy treats arrays with different shapes during arithmetic operations?</p>
+<div class="hlcode"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="cp"># how to align the dimension of two ndarray objects?</span>
+<span class="n">print</span> <span class="n">x</span><span class="o">-</span><span class="n">y</span>
+</pre></div>
+
+
+<h3 id="general-broadcasting-rules">General broadcasting rules</h3>
+<p>When operating on two arrays, numpy compares their shapes element-wise. It starts with the <em>trailing</em> dimensions, and works its way forward. Two dimensions are compatible when</p>
+<ol>
+<li>they are equal, or</li>
+<li>one of them is <code>1</code></li>
+</ol>
+<p>If these conditions are not met,<code>a ValueError: frames are not aligned</code> exception is thrown, indicating that the arrays have incompatible shapes. The size of the resulting array is the maximum size along each dimension of the input arrays.</p>
+<p>Arrays do not need to have the same number of dimensions. For example, if you have a 256x256x3 array of RGB values, and you want to scale each color in the image by a different value, you can multiply the image by a one-dimensional array with 3 values. Lining up the sizes of the trailing axes of these arrays according to the broadcast rules, shows that they are compatible:</p>
+<div class="hlcode"><pre><span class="n">Image</span>  <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span> <span class="mi">256</span> <span class="n">x</span> <span class="mi">256</span> <span class="n">x</span> <span class="mi">3</span>
+<span class="n">Scale</span>  <span class="p">(</span><span class="mi">1</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>             <span class="mi">3</span>
+<span class="n">Result</span> <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span> <span class="mi">256</span> <span class="n">x</span> <span class="mi">256</span> <span class="n">x</span> <span class="mi">3</span>
+</pre></div>
+
+
+<p>When either of the dimensions compared is one, the other is used. In other words, dimensions with size 1 are stretched or “copied” to match the other.</p>
+<p>In the following example, both the A and B arrays have axes with length one that are expanded to a larger size during the broadcast operation:</p>
+<div class="hlcode"><pre><span class="n">A</span>      <span class="p">(</span><span class="mi">4</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">8</span> <span class="n">x</span> <span class="mi">1</span> <span class="n">x</span> <span class="mi">6</span> <span class="n">x</span> <span class="mi">1</span>
+<span class="n">B</span>      <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>      <span class="mi">7</span> <span class="n">x</span> <span class="mi">1</span> <span class="n">x</span> <span class="mi">5</span>
+<span class="n">Result</span> <span class="p">(</span><span class="mi">4</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">8</span> <span class="n">x</span> <span class="mi">7</span> <span class="n">x</span> <span class="mi">6</span> <span class="n">x</span> <span class="mi">5</span>
+</pre></div>
+
+
+<p>Here are some more examples:</p>
+<div class="hlcode"><pre><span class="n">A</span>      <span class="p">(</span><span class="mi">2</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">5</span> <span class="n">x</span> <span class="mi">4</span>
+<span class="n">B</span>      <span class="p">(</span><span class="mi">1</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>      <span class="mi">1</span>
+<span class="n">Result</span> <span class="p">(</span><span class="mi">2</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">5</span> <span class="n">x</span> <span class="mi">4</span>
+
+<span class="n">A</span>      <span class="p">(</span><span class="mi">2</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">5</span> <span class="n">x</span> <span class="mi">4</span>
+<span class="n">B</span>      <span class="p">(</span><span class="mi">1</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>      <span class="mi">4</span>
+<span class="n">Result</span> <span class="p">(</span><span class="mi">2</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">5</span> <span class="n">x</span> <span class="mi">4</span>
+
+<span class="n">A</span>      <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">15</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">x</span> <span class="mi">5</span>
+<span class="n">B</span>      <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">15</span> <span class="n">x</span> <span class="mi">1</span> <span class="n">x</span> <span class="mi">5</span>
+<span class="n">Result</span> <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">15</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">x</span> <span class="mi">5</span>
+
+<span class="n">A</span>      <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">15</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">x</span> <span class="mi">5</span>
+<span class="n">B</span>      <span class="p">(</span><span class="mi">2</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>       <span class="mi">3</span> <span class="n">x</span> <span class="mi">5</span>
+<span class="n">Result</span> <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">15</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">x</span> <span class="mi">5</span>
+
+<span class="n">A</span>      <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">15</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">x</span> <span class="mi">5</span>
+<span class="n">B</span>      <span class="p">(</span><span class="mi">2</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>       <span class="mi">3</span> <span class="n">x</span> <span class="mi">1</span>
+<span class="n">Result</span> <span class="p">(</span><span class="mi">3</span><span class="n">d</span> <span class="n">array</span><span class="p">)</span><span class="o">:</span>  <span class="mi">15</span> <span class="n">x</span> <span class="mi">3</span> <span class="n">x</span> <span class="mi">5</span>
+</pre></div>
+
+
+<p>An example of broadcasting in practice:</p>
+<div class="hlcode"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">xx</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">5</span><span class="p">,)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<span class="o">&lt;</span><span class="n">type</span> <span class="err">&#39;</span><span class="n">exceptions</span><span class="p">.</span><span class="n">ValueError</span><span class="err">&#39;</span><span class="o">&gt;:</span> <span class="n">shape</span> <span class="n">mismatch</span><span class="o">:</span> <span class="n">objects</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">broadcast</span> <span class="n">to</span> <span class="n">a</span> <span class="n">single</span> <span class="n">shape</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">xx</span><span class="p">.</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">5</span><span class="p">,)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">xx</span> <span class="o">+</span> <span class="n">y</span><span class="p">).</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">xx</span> <span class="o">+</span> <span class="n">y</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">4.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">]])</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">z</span><span class="p">.</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">z</span><span class="p">).</span><span class="n">shape</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">z</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">]])</span>
+</pre></div>
+
+
+<h3 id="reference">Reference</h3>
+<ul>
+<li><a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html</a></li>
+<li><a href="http://wiki.scipy.org/EricsBroadcastingDoc">http://wiki.scipy.org/EricsBroadcastingDoc</a></li>
+</ul>
+<h2 id="iterating-over-arrays">Iterating Over Arrays</h2>
+<h3 id="single-array-iteration">Single Array Iteration</h3>
+<p>The most basic task that can be done with the nditer is to visit every element of an array. Each element is provided one by one using the standard Python iterator interface.</p>
+<div class="hlcode"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">np</span><span class="p">.</span><span class="n">nditer</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">:</span>
+<span class="p">...</span>     <span class="n">print</span> <span class="n">x</span><span class="p">,</span>
+<span class="p">...</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span>
+</pre></div>
+
+
+<h3 id="controlling-iteration-order">Controlling Iteration Order</h3>
+<p>There are times when it is important to visit the elements of an array in a specific order, irrespective of the layout of the elements in memory. The nditer object provides an order parameter to control this aspect of iteration. The default, having the behavior described above, is order=’K’ to keep the existing order. This can be overridden with order=’C’ for C order and order=’F’ for Fortran order.</p>
+<div class="hlcode"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">np</span><span class="p">.</span><span class="n">nditer</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="sc">&#39;F&#39;</span><span class="p">)</span><span class="o">:</span>
+<span class="p">...</span>     <span class="n">print</span> <span class="n">x</span><span class="p">,</span>
+<span class="p">...</span>
+<span class="mi">0</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">np</span><span class="p">.</span><span class="n">nditer</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="sc">&#39;C&#39;</span><span class="p">)</span><span class="o">:</span>
+<span class="p">...</span>     <span class="n">print</span> <span class="n">x</span><span class="p">,</span>
+<span class="p">...</span>
+<span class="mi">0</span> <span class="mi">3</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span>
+</pre></div>
+
+
+<h3 id="modifying-array-values">Modifying Array Values</h3>
+<p>By default, the nditer treats the input array as a read-only object. To modify the array elements, you must specify either read-write or write-only mode. This is controlled with per-operand flags.</p>
+<p>Regular assignment in Python simply changes a reference in the local or global variable dictionary instead of modifying an existing variable in place. This means that simply assigning to x will not place the value into the element of the array, but rather switch x from being an array element reference to being a reference to the value you assigned. To actually modify the element of the array, x should be indexed with the ellipsis.</p>
+<div class="hlcode"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">np</span><span class="p">.</span><span class="n">nditer</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">op_flags</span><span class="o">=</span><span class="p">[</span><span class="err">&#39;</span><span class="n">readwrite</span><span class="err">&#39;</span><span class="p">])</span><span class="o">:</span>
+<span class="p">...</span>     <span class="n">x</span><span class="p">[...]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="p">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+</pre></div>
+
+
+<h3 id="tracking-an-index-or-multi-index">Tracking an Index or Multi-Index</h3>
+<p>During iteration, you may want to use the index of the current element in a computation. For example, you may want to visit the elements of an array in memory order, but use a C-order, Fortran-order, or multidimensional index to look up values in a different array.</p>
+<p>The Python iterator protocol doesn’t have a natural way to query these additional values from the iterator, so we introduce an alternate syntax for iterating with an nditer. This syntax explicitly works with the iterator object itself, so its properties are readily accessible during iteration. With this looping construct, the current value is accessible by indexing into the iterator, and the index being tracked is the property index or multi_index depending on what was requested.</p>
+<p>The Python interactive interpreter unfortunately prints out the values of expressions inside the while loop during each iteration of the loop. We have modified the output in the examples using this looping construct in order to be more readable.</p>
+<div class="hlcode"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="nx">np.arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="bp">.</span><span class="nx">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="nx">np.nditer</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="err">[</span><span class="s1">&#39;f_index&#39;</span><span class="cp">]</span>)
+&gt;&gt;&gt; while not it.finished:
+...     print &quot;%d <span class="err">&lt;</span>%d&gt;&quot; % (it<span class="cp">[</span><span class="mi">0</span><span class="cp">]</span>, it.index),
+...     it.iternext()
+...
+0 <span class="nt">&lt;0&gt;</span> 1 <span class="nt">&lt;2&gt;</span> 2 <span class="nt">&lt;4&gt;</span> 3 <span class="nt">&lt;1&gt;</span> 4 <span class="nt">&lt;3&gt;</span> 5 <span class="nt">&lt;5&gt;</span>
+
+&gt;&gt;&gt; it = np.nditer(a, flags=<span class="cp">[</span><span class="s1">&#39;multi_index&#39;</span><span class="cp">]</span>)
+&gt;&gt;&gt; while not it.finished:
+...     print &quot;%d <span class="err">&lt;</span>%s&gt;&quot; % (it<span class="cp">[</span><span class="mi">0</span><span class="cp">]</span>, it.multi_index),
+...     it.iternext()
+...
+0 <span class="err">&lt;</span>(0, 0)&gt; 1 <span class="err">&lt;</span>(0, 1)&gt; 2 <span class="err">&lt;</span>(0, 2)&gt; 3 <span class="err">&lt;</span>(1, 0)&gt; 4 <span class="err">&lt;</span>(1, 1)&gt; 5 <span class="err">&lt;</span>(1, 2)&gt;
+
+&gt;&gt;&gt; it = np.nditer(a, flags=<span class="cp">[</span><span class="s1">&#39;multi_index&#39;</span><span class="cp">]</span>, op_flags=<span class="cp">[</span><span class="s1">&#39;writeonly&#39;</span><span class="cp">]</span>)
+&gt;&gt;&gt; while not it.finished:
+...     it<span class="cp">[</span><span class="mi">0</span><span class="cp">]</span> = it.multi_index<span class="cp">[</span><span class="mi">1</span><span class="cp">]</span> - it.multi_index<span class="cp">[</span><span class="mi">0</span><span class="cp">]</span>
+...     it.iternext()
+...
+&gt;&gt;&gt; a
+array(<span class="cp">[</span><span class="err">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="cp">]</span>,
+       <span class="cp">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="cp">]</span>])
+</pre></div>
+
+
+<h3 id="reference_1">Reference</h3>
+<p><a href="http://docs.scipy.org/doc/numpy/reference/arrays.nditer.html#arrays-nditer">http://docs.scipy.org/doc/numpy/reference/arrays.nditer.html#arrays-nditer</a></p>
+    </div>
+
+        </div>
+        <div id="footer">
+            <span>
+                Copyright © 2012-2014 vanechu.
+                Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.
+            </span>
+        </div>
+<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F754de327571c0ba7ff50a61fc964e196' type='text/javascript'%3E%3C/script%3E"));
+</script>
+    </body>
+</html>
