@@ -4,7 +4,7 @@ layout: page
 date: 2015-06-26 00:00
 ---
 
-## Ndarray Broadcasting
+## 1. Ndarray Broadcasting
 
 How numpy treats arrays with different shapes during arithmetic operations?
 
@@ -118,7 +118,7 @@ array([[ 1.,  2.,  3.,  4.],
 - [http://wiki.scipy.org/EricsBroadcastingDoc](http://wiki.scipy.org/EricsBroadcastingDoc)
 
 
-## Iterating Over Arrays
+## 2. Iterating Over Arrays
 
 ### Single Array Iteration
 The most basic task that can be done with the nditer is to visit every element of an array. Each element is provided one by one using the standard Python iterator interface.
@@ -200,4 +200,4 @@ array([[ 0,  1,  2],
 
 
 ### Reference
-[http://docs.scipy.org/doc/numpy/reference/arrays.nditer.html#arrays-nditer](http://docs.scipy.org/doc/numpy/reference/arrays.nditer.html#arrays-nditer)
+- [http://docs.scipy.org/doc/numpy/reference/arrays.nditer.html#arrays-nditer](http://docs.scipy.org/doc/numpy/reference/arrays.nditer.html#arrays-nditer)
